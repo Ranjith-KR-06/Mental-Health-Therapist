@@ -14,19 +14,21 @@ echo Enabling backend demo mode (no DB required)...
 set "ALLOW_DEMO=true"
 
 echo Starting Backend (PORT 3001)...
-start "AI Therapist Backend" cmd /k "cd /d D:\D\ai therepist\ai-therapist-agent-backend-main && set "ALLOW_DEMO=true" && set "PORT=3001" && npm run dev"
+start "AI Therapist Backend" cmd /k "cd /d "%~dp0ai-therapist-agent-backend-main" && set "ALLOW_DEMO=true" && set "PORT=3001" && npm run dev"
 
 echo Starting Frontend (Next.js on 3000)...
-start "AI Therapist Frontend" cmd /k "cd /d D:\D\ai therepist\ai-therapist-agent-main && npm run dev"
+start "AI Therapist Frontend" cmd /k "cd /d "%~dp0ai-therapist-agent-main" && npm run dev"
 
 echo Starting MindPulse AI (Streamlit on 8501)...
-start "MindPulse AI" cmd /k "cd /d D:\D\ai therepist\MindPulse-AI-main\MindPulse-AI-main && python -m streamlit run mindpulse.py --server.port=8501"
+start "MindPulse AI" cmd /k "cd /d "%~dp0MindPulse-AI-main\MindPulse-AI-main" && python -m streamlit run mindpulse.py --server.port=8501"
 
 echo Starting Google Chatbot (Vite on 5173)...
-start "Google Chatbot" cmd /k "cd /d "D:\D\ai therepist\google-chatbot (2)\google-chatbot (2)" && npm run dev"
+start "Google Chatbot" cmd /k "cd /d "%~dp0google-chatbot (2)\google-chatbot (2)" && npm run dev"
 
-echo Starting Voxel Toy Box (Vite on 5174)...
-start "Voxel Toy Box" cmd /k "cd /d "D:\D\ai therepist\voxel-toy-box" && npm run dev"
+if exist "%~dp0voxel-toy-box" (
+  echo Starting Voxel Toy Box (Vite on 5174)...
+  start "Voxel Toy Box" cmd /k "cd /d "%~dp0voxel-toy-box" && npm run dev"
+)
 
 echo.
 echo All apps are starting. Open these URLs after ~10-20s:

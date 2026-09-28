@@ -5,7 +5,7 @@ import path from 'path';
 export async function POST() {
   try {
     // Create a flag file that the Python watcher will detect
-    const flagPath = path.join('D:', 'D', 'ai therepist', 'launch_flappy.flag');
+    const flagPath = path.resolve(process.cwd(), '..', 'launch_flappy.flag');
     fs.writeFileSync(flagPath, 'launch');
     
     return NextResponse.json({ success: true });
